@@ -28,3 +28,16 @@
     padding: 1em;
     border-radius: 15px;
 }
+
+.unordered-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+li {
+    margin-top: 5px;
+}
+
+.anchor-tag {
+    color: #5f9341;
+}

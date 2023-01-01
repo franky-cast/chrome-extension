@@ -5,9 +5,6 @@ let myLeads = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
-const x = "<li><a target='_blank' href='"
-const y = "'>"
-const z = "</a></li>"
 
 
 inputBtn.addEventListener("click", function () {
@@ -20,7 +17,13 @@ inputBtn.addEventListener("click", function () {
 // -------------------- My way --------------------
 function renderLeads() {
     for (let i = myLeads.length - 1; i < myLeads.length; i++) {
-        ulEl.innerHTML += x + inputEl.value + y + inputEl.value + z
+        ulEl.innerHTML += `
+        <li>
+            <a class="anchor-tag" target="_blank" href="${inputEl.value}">
+                ${inputEl.value}
+            </a>
+        </li>
+        `
     }
 }
 
@@ -29,10 +32,15 @@ function renderLeads() {
 // function renderLeads() {
 //     let listItems = ""
 //     for (let i = 0; i < myLeads.length; i++) {
-//         listItems += "<li>" + myLeads[i] + "</li>"
+//         listItems += `
+//             <li>
+//                 <a target='_blank' href='${myLeads[i]}'>
+//                     ${myLeads[i]}
+//                 </a>
+//             </li>
+//         `
 //     }
 //     ulEl.innerHTML = listItems  
-//     inputEl.value = ""
 // }
 
 
