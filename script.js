@@ -11,13 +11,7 @@ const ulEl = document.getElementById("ul-el")
 // checks local storage for leads, displays them ulEl.innerHTML, updates the myLeads array
 if (storedLeads) {
     myLeads = storedLeads
-    for (let i = 0; i < storedLeads.length; i++) {
-        ulEl.innerHTML += `
-        <li>
-            <a class="anchor-tag" target="_blank" href="${storedLeads[i]}">${storedLeads[i]}</a>
-        </li>
-    `
-    }
+    render(myLeads)
 }
 
 // pushes input value to myLeads array, updates local storage
@@ -26,7 +20,7 @@ saveBtn.addEventListener("click", function () {
         myLeads.push(inputEl.value)
         localStorage.setItem("myLeads", JSON.stringify(myLeads))
     
-        renderLeads()
+        render(myLeads)
         inputEl.value = ""
     } else {
         alert("Please enter url")
@@ -37,32 +31,19 @@ saveBtn.addEventListener("click", function () {
 deleteBtn.addEventListener("dblclick", function () {
     localStorage.clear()
     myLeads = []
-    renderLeads()
+    render(myLeads)
 })
 
 // rends any new leads onto the screen
 // -------------------- My way --------------------
-function renderLeads() {
-    for (let i = myLeads.length - 1; i < myLeads.length; i++) {
-        ulEl.innerHTML += `
+function render(arr) {
+    let listItems = []
+    for (let i = 0; i < arr.length; i++) {
+        listItems += `
         <li>
-            <a class="anchor-tag" target="_blank" href="${inputEl.value}">${inputEl.value}</a>
+            <a class="anchor-tag" target="_blank" href="${arr[i]}">${arr[i]}</a>
         </li>
         `
     }
+    ulEl.innerHTML = listItems
 }
-
-// -------------------- Scrimba way --------------------
-// function renderLeads() {
-//     let listItems = ""
-//     for (let i = 0; i < myLeads.length; i++) {
-//         listItems += `
-//             <li>
-//                 <a target='_blank' href='${myLeads[i]}'>
-//                     ${myLeads[i]}
-//                 </a>
-//             </li>
-//         `
-//     }
-//     ulEl.innerHTML = listItems  
-// }
